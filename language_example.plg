@@ -1,0 +1,6 @@
+# Plang File Example
+
+VAR file
+
+WHILE file IS NOT empty
+    DO PrintLine
