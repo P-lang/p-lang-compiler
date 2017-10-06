@@ -1,47 +1,22 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include "CommonTypes.h"
+#include "Parser.h"
 
 using namespace std;
 
 void Log(string message) {
     cout << message << endl;
-    //delete(&message);
 }
 
-enum TokenType {
-    NUMBER,
-    SPACE,
-    TAB,
-    WORD,
-    END_OF_LINE,
-    OPERATOR_EQUALS,
-    OPERATOR_PLUS,
-    OPERATOR_MINUS,
-    OPERATOR_MULTIPLY,
-    OPERATOR_DIVIDE,
-    OPERATOR_MORE,
-    OPERATOR_LESS,
-    OPERATOR_MORE_OR_EQUAL,
-    OPERATOR_LESS_OR_EQUAL,
-    OPERATOR_PLUS_EQUALS,
-    OPERATOR_MINUS_EQUALS,
-    OPERATOR_MULTIPLY_EQUALS,
-    OPERATOR_DIVIDE_EQUALS,
-    OPERATOR_NOT_EQUALS,
-    OPERATOR_NOT,
-    COMMENT
-};
+// -- Tokenizer
+
 const char *TokenTypeString[] = {"NUMBER\t\t", "SPACE\t\t", "TAB\t\t", "WORD\t\t", "END_OF_LINE\t", "OPERATOR_EQUALS\t",
                                  "OPERATOR_PLUS\t", "OPERATOR_MINUS\t", "OPERATOR_MULTIPLY", "OPERATOR_DIVIDE\t",
                                  "OPERATOR_MORE\t", "OPERATOR_LESS\t", "OPERATOR_MORE_OR_EQUAL",
                                  "OPERATOR_LESS_OR_EQUAL", "OPERATOR_PLUS_EQUALS", "OPERATOR_MINUS_EQUALS", "OPERATOR_MULTIPLY_EQUALS",
                                  "OPERATOR_DIVIDE_EQUALS", "OPERATOR_NOT_EQUALS", "OPERATOR_NOT", "COMMENT\t\t"};
-
-struct Token {
-    TokenType tokenType;
-    string value;
-};
 
 vector<Token> tokens;
 
@@ -301,7 +276,6 @@ void Tokenize(const string *source) {
 int main() {
     std::ifstream fileStream("./plang.plg");
     std::string source((std::istreambuf_iterator<char>(fileStream)), std::istreambuf_iterator<char>());
-    //Log(source);
 
     // Tokenize Source
     Tokenize(&source);
@@ -309,6 +283,9 @@ int main() {
     for (int i = 0; i < tokens.size(); i++) {
         Log(TokenTypeString[tokens[i].tokenType] + string("\t|") + tokens[i].value + "|");
     }
+
+    // Parse to AST
+    Match_START(tokens);
 
     return 0;
 }

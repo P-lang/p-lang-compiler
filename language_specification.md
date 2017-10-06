@@ -58,3 +58,12 @@ Number|SPACE|Normal
 Number|COMMENT_INDICATOR|Comment
 Number|OPERATOR|Normal
 Comment|SPACE_END_OF_LINE|Normal
+
+###Parser
+#####Context Free Grammar
+Name | Rule
+---- | ----
+START | VAR_DEC
+VAR_DEC | word word = VALUE
+VALUE | word / number
+ 

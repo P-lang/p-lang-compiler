@@ -4,3 +4,47 @@ VAR file
 
 WHILE file IS NOT empty
     DO PrintLine
+
+
+
+
+
+
+
+Node thisNode = new Node()
+
+Node a = Match_Word()
+IF a NOT NULL
+    thisNode.property = a
+    return thisNode
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Node thisNode = new Node()
+
+Node property1 = Match_Word()
+Node property2 = Match_Word()
+Node property3 = Match_Number()
+
+IF property1 NULL || property2 NULL || property3 NULL
+    return NULL
+
+# Only here if all is matched
+thisNode.property1 = property1
+thisNode.property2 = property2
+thisNode.property3 = property3
+
+return thisNode

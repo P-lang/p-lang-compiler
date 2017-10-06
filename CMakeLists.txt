@@ -7,5 +7,5 @@ set(GCC_COVERAGE_COMPILE_FLAGS "-static-libgcc -static-libstdc++")
 set( CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} ${GCC_COVERAGE_COMPILE_FLAGS}" )
 set( CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} ${GCC_COVERAGE_LINK_FLAGS}" )
 
-set(SOURCE_FILES main.cpp)
+set(SOURCE_FILES main.cpp Parser.cpp Parser.h CommonTypes.h)
 add_executable(PLangCompiler ${SOURCE_FILES})
