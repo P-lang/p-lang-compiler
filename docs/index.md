@@ -1,11 +1,8 @@
-##Plang Specification
 
+## Plang Specification
 #### Extension: 
-
 .plg
-
-###Token Rules
-
+### Token Rules
 ```
 # Plang File Example
 
@@ -14,7 +11,6 @@ VAR file
 WHILE file IS NOT empty
     DO PrintLine
 ```
-
  - Comments are single line
     - Start with #
     - Entire line becomes comment
@@ -30,11 +26,9 @@ WHILE file IS NOT empty
     - 'WORD' can optionally be followed by `=`
         - Required to have spaces on both sides
         - Must be followed by either a 'WORD' or a 'NUMBER'
-        
-    
-###Lexer Logic
-
-#####Character Categories
+        - 
+### Lexer Logic
+##### Character Categories
 
 Category | Characters
 ---------|-----------
@@ -42,9 +36,9 @@ ALPHA|`a-z`, `A-Z`
 DIGIT|`0-9`
 OPERATOR|`+`, `-`, `*`, `/`, `<`, `>`, `=`, `!`
 SPACE|` `, `\n`, `\r`, `\t`
-COMMENT_INDICATOR|`#` 
+COMMENT_INDICATOR|`#`
 
-#####State flow
+##### State flow
 
 The state is the state the system is currently in. If the current scanned char is in the state terminator category, the tokens are made accordingly, and the machine is set into the target state.
 
@@ -65,9 +59,10 @@ Number|COMMENT_INDICATOR|Comment
 Number|OPERATOR|Normal
 Comment|SPACE_END_OF_LINE|Normal
 
-###Parser
+### Parser
 
-#####Context Free Grammar
+##### Context Free Grammar
+
 
 Name | Rule
 ---- | ----
