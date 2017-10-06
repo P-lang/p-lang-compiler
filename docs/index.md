@@ -1,6 +1,9 @@
 ##Plang Specification
+
 #### Extension: 
+
 .plg
+
 ###Token Rules
 
 ```
@@ -30,7 +33,9 @@ WHILE file IS NOT empty
         
     
 ###Lexer Logic
+
 #####Character Categories
+
 Category | Characters
 ---------|-----------
 ALPHA|`a-z`, `A-Z`
@@ -40,6 +45,7 @@ SPACE|` `, `\n`, `\r`, `\t`
 COMMENT_INDICATOR|`#` 
 
 #####State flow
+
 The state is the state the system is currently in. If the current scanned char is in the state terminator category, the tokens are made accordingly, and the machine is set into the target state.
 
 In the case of the terminator being an OPERATOR, the next character may be checked to determine the correct token, such as in the event of `+=` or `<=`. 
@@ -60,7 +66,9 @@ Number|OPERATOR|Normal
 Comment|SPACE_END_OF_LINE|Normal
 
 ###Parser
+
 #####Context Free Grammar
+
 Name | Rule
 ---- | ----
 START | VAR_DEC
