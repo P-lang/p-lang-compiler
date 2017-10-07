@@ -29,8 +29,3 @@ How
 
 .. [1] A footnote contains body elements, consistently
    indented by at least 3 spaces.
-
-
-.. Comments begin with two dots and a space.  Anything may
-follow, except for the syntax of footnotes/citations,
-hyperlink targets, directives, or substitution definitions.
