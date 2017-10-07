@@ -29,22 +29,29 @@ IF a NOT NULL
 
 
 
+VAR tokenPointer
 
+FUNCTION Match_VarDef
 
+    VAR tokenSave = tokenPointer # Save the token where we start
+    Node thisNode = new Node()
 
+    Node property1 = Match_Word()
+    Node property2 = Match_Word()
+    Node property3 = Match_Number()
 
-Node thisNode = new Node()
+    IF property1 NULL || property2 NULL || property3 NULL
+        # Mismatch -> Delete all nodes including thisNode
+        delete property1
+        delete property2
+        delete property3
+        delete thisNode
+        tokenPointer = tokenSave # Reset tokenPointer
+        return NULL
 
-Node property1 = Match_Word()
-Node property2 = Match_Word()
-Node property3 = Match_Number()
+    # Only here if all is matched
+    thisNode.property1 = property1
+    thisNode.property2 = property2
+    thisNode.property3 = property3
 
-IF property1 NULL || property2 NULL || property3 NULL
-    return NULL
-
-# Only here if all is matched
-thisNode.property1 = property1
-thisNode.property2 = property2
-thisNode.property3 = property3
-
-return thisNode
+    return thisNode
