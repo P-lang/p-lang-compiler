@@ -2,4 +2,4 @@
 
 Welcome to Plang. Let's start with a brief overview of what plang is, what it strives to achieve and the philosophy we follow.
 
-[Lightbox](https://www.draw.io/?lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1&title=Untitled%20Diagram.xml#RtZZNk9owDIZ%2FTY7thBiYcOxSuj20J3am3aOxlcRdJ2KMgdBfX4fIm3iT7NAO5cBYr%2BQPPZINEVuX9aPh%2B%2BI7StBREss6Yp%2BjJFmtEvfdCJdWSJdxK%2BRGyVaadcJW%2FQYSfdhRSTgEgRZRW7UPRYFVBcIGGjcGz2FYhjrcdc9zGAhbwfVQ%2FaGkLSiLRdzpX0Hlhd95FpNnx8VLbvBY0X5RwrLrp3WX3K9F8YeCSzz3JLaJ2Nog2nZU1mvQDVqPrZ33ZcL7em4Dlb1lAluJVMpsycWSrfhu%2BYHRuezFswDp0JCJxhaYY8X1plMfrvlCs2LsrMKW2g1nbgi1sj8b%2BeOCrGfvqay59FyN%2BUwL%2FAJrL9QT%2FGjRSd2%2B3xD3tMYwV0r%2FgEcjYCJB307c5GAnYqh7m8x7CxPBR8AS3HFdgAHNrTqFTcOp9%2FLXuI6%2FG1AJbiwHrXni%2Bki7PMHBDmrUVaABcy6Uhe2eXxmc3QUNq5Iprdeo0VznMskhzYTTD9bgC%2FQ8S5HCLnuP9AmMhfpdRuRl%2FobQi5B4%2B9zdr5m%2FFUXvbvmX465YkwHWkb7X2j038Nc8s1SAGOW5SxfzRXwnnquQJ0tu5JnegecQ3xPUw660jRigCpFUWMEbfiRxrfLKmcIBAqc%2FNGCUe58%2FkaNUUuqp2kywHCE%2BiXe%2BeNOuI3jnI3STe3TrgO6%2F9%2BYdULirG3ba7P91mjO7376rr%2Ff%2Fgm3%2BAA%3D%3D)
+![Image](/docs/images/flow.png)
