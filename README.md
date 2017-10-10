@@ -1,3 +1,3 @@
 # Plang Compiler
 
-**[Github Pages Page](https://p-lang.github.io/p-lang-compiler/)**
+### **[View Documentation](http://92.222.90.41:3000/plang/)**
