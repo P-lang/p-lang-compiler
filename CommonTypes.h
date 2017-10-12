@@ -5,7 +5,11 @@
 #ifndef PLANGCOMPILER_COMMONTYPES_H
 #define PLANGCOMPILER_COMMONTYPES_H
 
+#include <iostream>
+
 using namespace std;
+
+void Log(string message);
 
 enum TokenType {
     NUMBER,
@@ -28,11 +32,15 @@ enum TokenType {
     OPERATOR_DIVIDE_EQUALS,
     OPERATOR_NOT_EQUALS,
     OPERATOR_NOT,
-    COMMENT
+    COMMENT,
+    OPERATOR_LBRACE,
+    OPERATOR_RBRACE
 };
+
 struct Token {
     TokenType tokenType;
     string value;
 };
+
 
 #endif //PLANGCOMPILER_COMMONTYPES_H
