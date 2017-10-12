@@ -14,7 +14,7 @@ using namespace std;
 extern const char * TokenTypeString[];
 
 class Lexer {
-private:
+public:
     vector<Token> tokens;
 
 public:

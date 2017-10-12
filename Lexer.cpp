@@ -40,6 +40,16 @@ void Lexer::Tokenize(const string *source) {
     while (true) {
         // -- End of file
         if (currentIndex == sourceLength) {
+            switch (state) {
+                case NORMAL:
+                    break;
+                case WORD:
+                    MakeToken(source, TokenType::WORD, tokenStartIndex, tokenLength);
+                    break;
+                case NUMBER:
+                    MakeToken(source, TokenType::NUMBER, tokenStartIndex, tokenLength);
+                    break;
+            }
             break;
         }
         character = source->at(currentIndex);

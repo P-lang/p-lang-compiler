@@ -2,6 +2,7 @@
 #include <fstream>
 #include <vector>
 #include "Lexer.h"
+#include "Parser.h"
 
 using namespace std;
 
@@ -19,7 +20,13 @@ int main() {
     lexer.PrintTokens();
 
     // Parser
+    Parser parser(lexer.tokens);
+    Node* node_start = parser.Match_T1();
 
+    if(node_start == nullptr)
+        Log("Its null");
+
+    node_start->PrintSubtree(0);
 
     return 0;
 }
