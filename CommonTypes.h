@@ -34,7 +34,8 @@ enum TokenType {
     OPERATOR_NOT,
     COMMENT,
     OPERATOR_LBRACE,
-    OPERATOR_RBRACE
+    OPERATOR_RBRACE,
+    EOF_DOLLAR
 };
 
 struct Token {

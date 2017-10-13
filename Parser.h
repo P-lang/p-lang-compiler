@@ -12,13 +12,16 @@
 using namespace std;
 
 struct Node {
+    int id;
     Node* node_child_left;
     Node* node_child_center;
     Node* node_child_right;
     string value;
 
+    Node();
     ~Node();
     void PrintSubtree(int depth);
+    void PrintDotSubtree(ostream &ostream1);
 };
 
 class Parser {
@@ -31,11 +34,20 @@ public:
 
     Parser(vector<Token> &tokens);
 
+    void PrintTree(Node* node);
+    Node* root_node = nullptr;
+
+    Node* Match_Tokens();
+
     // -- Non Terminals
     Node* Match_T();
     Node* Match_T1();
     Node* Match_T2();
     Node* Match_T3();
+
+    Node* Match_E();
+    Node* Match_E1();
+    Node* Match_E2();
 
     // -- Terminals
     Node* Match_Terminal_num();

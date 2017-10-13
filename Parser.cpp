@@ -2,12 +2,22 @@
 // Created by ramon on 10/12/2017.
 //
 
+#include <fstream>
 #include "Parser.h"
 #include "Lexer.h"
 
 Parser::Parser(vector<Token> &tokens) {
     this->tokens = tokens;
     this->current_token = &tokens[0];
+}
+
+int idIterator = 0;
+Node::Node() {
+    this->id = idIterator;
+    idIterator++;
+    this->node_child_left = nullptr;
+    this->node_child_center = nullptr;
+    this->node_child_right = nullptr;
 }
 
 Node::~Node() {
@@ -40,6 +50,47 @@ void Node::PrintSubtree(int depth) {
         node_child_right->PrintSubtree(depth+1);
 }
 
+void Node::PrintDotSubtree(ostream &ostream1) {
+
+    ostream1 << to_string(this->id) + " [label=\"" + this->value + "\"]" << endl;
+
+    if(node_child_left != nullptr) {
+        ostream1 << to_string(this->id) + " -- " + to_string(node_child_left->id) << endl;
+        node_child_left->PrintDotSubtree(ostream1);
+    }
+
+    if(node_child_center != nullptr) {
+        ostream1 << to_string(this->id) + " -- " + to_string(node_child_center->id) << endl;
+        node_child_center->PrintDotSubtree(ostream1);
+    }
+
+    if(node_child_right != nullptr) {
+        ostream1 << to_string(this->id) + " -- " + to_string(node_child_right->id) << endl;
+        node_child_right->PrintDotSubtree(ostream1);
+    }
+}
+
+void Parser::PrintTree(Node* node) {
+    ofstream outputFile("graph.txt");
+    outputFile << "graph graphname {" << endl;
+    node->PrintDotSubtree(outputFile);
+    outputFile << "}";
+    outputFile.close();
+}
+
+Node *Parser::Match_Tokens() {
+    // -- Change start symbol here
+    this->root_node = Match_E();
+
+    if(root_node != nullptr && current_token->tokenType == TokenType::EOF_DOLLAR)
+        return root_node;
+
+    if(root_node != nullptr && current_token->tokenType != TokenType::EOF_DOLLAR)
+        Log("File parsed, but file end was not reached.");
+
+    return nullptr;
+}
+
 // -- Non Terminals
 
 Node* Parser::Match_T() {
@@ -52,9 +103,9 @@ Node* Parser::Match_T() {
     if(t2 != nullptr)
         return t2;
 
-    //Node* t3 = Match_T3();
-    //if(t3 != nullptr)
-    //    return t3;
+    Node* t3 = Match_T3();
+    if(t3 != nullptr)
+        return t3;
 
     // -- No match found
     return nullptr;
@@ -105,7 +156,91 @@ Node* Parser::Match_T2() {
 }
 
 Node* Parser::Match_T3() {
+    Token* start_token = current_token;
+
+    Node* lb = Match_Terminal_left_brace();
+    if(lb == nullptr) {
+        current_token = start_token;
+        return nullptr;
+    }
+
+    Node* e = Match_E();
+    if(e == nullptr) {
+        current_token = start_token;
+        return nullptr;
+    }
+
+    Node* rb = Match_Terminal_right_brace();
+    if(rb == nullptr) {
+        current_token = start_token;
+        return nullptr;
+    }
+
+    Node* new_node = new Node();
+    new_node->value = "T3";
+    new_node->node_child_left = lb;
+    new_node->node_child_center = e;
+    new_node->node_child_right = rb;
+    return new_node;
+}
+
+
+Node* Parser::Match_E() {
+    // -- Try each production until match is found
+    Node* e1 = Match_E1();
+    if(e1 != nullptr)
+        return e1;
+
+    Node* e2 = Match_E2();
+    if(e2 != nullptr)
+        return e2;
+
+    // -- No match found
     return nullptr;
+}
+
+Node* Parser::Match_E1() {
+    Token* start_token = current_token;
+
+    Node* t = Match_T();
+    if(t == nullptr) {
+        current_token = start_token;
+        return nullptr;
+    }
+
+    Node* plus = Match_Terminal_plus();
+    if(plus == nullptr) {
+        current_token = start_token;
+        return nullptr;
+    }
+
+    Node* e = Match_E();
+    if(e == nullptr) {
+        current_token = start_token;
+        return nullptr;
+    }
+
+    Node* new_node = new Node();
+    new_node->value = "E1";
+    new_node->node_child_left = t;
+    new_node->node_child_center = plus;
+    new_node->node_child_right = e;
+    return new_node;
+}
+
+Node* Parser::Match_E2() {
+    Token* start_token = current_token;
+
+    Node* t = Match_T();
+    if(t == nullptr) {
+        current_token = start_token;
+        return nullptr;
+    }
+
+    Node* new_node = new Node();
+    new_node->value = "E2";
+    new_node->node_child_left = t;
+    return new_node;
 }
 
 // -- Terminals

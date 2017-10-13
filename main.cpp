@@ -21,12 +21,13 @@ int main() {
 
     // Parser
     Parser parser(lexer.tokens);
-    Node* node_start = parser.Match_T1();
+    Node* node_start = parser.Match_Tokens();
 
-    if(node_start == nullptr)
-        Log("Its null");
-
-    node_start->PrintSubtree(0);
+    if(node_start == nullptr) {
+        Log("Error in parse.");
+    } else {
+        parser.PrintTree(node_start);
+    }
 
     return 0;
 }

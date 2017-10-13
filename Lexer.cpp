@@ -4,7 +4,7 @@
 
 #include "Lexer.h"
 
-const char *TokenTypeString[] = {"NUMBER\t\t", "SPACE\t\t", "TAB\t\t", "WORD\t\t", "END_OF_LINE\t", "OPERATOR_EQUALS\t","OPERATOR_PLUS\t", "OPERATOR_MINUS\t", "OPERATOR_MULTIPLY", "OPERATOR_DIVIDE\t","OPERATOR_MORE\t", "OPERATOR_LESS\t", "OPERATOR_MORE_OR_EQUAL","OPERATOR_LESS_OR_EQUAL", "OPERATOR_PLUS_EQUALS", "OPERATOR_MINUS_EQUALS", "OPERATOR_MULTIPLY_EQUALS","OPERATOR_DIVIDE_EQUALS", "OPERATOR_NOT_EQUALS", "OPERATOR_NOT", "COMMENT\t\t", "OPERATOR_LBRACE\t","OPERATOR_RBRACE\t"};
+const char *TokenTypeString[] = {"NUMBER\t\t", "SPACE\t\t", "TAB\t\t", "WORD\t\t", "END_OF_LINE\t", "OPERATOR_EQUALS\t","OPERATOR_PLUS\t", "OPERATOR_MINUS\t", "OPERATOR_MULTIPLY", "OPERATOR_DIVIDE\t","OPERATOR_MORE\t", "OPERATOR_LESS\t", "OPERATOR_MORE_OR_EQUAL","OPERATOR_LESS_OR_EQUAL", "OPERATOR_PLUS_EQUALS", "OPERATOR_MINUS_EQUALS", "OPERATOR_MULTIPLY_EQUALS","OPERATOR_DIVIDE_EQUALS", "OPERATOR_NOT_EQUALS", "OPERATOR_NOT", "COMMENT\t\t", "OPERATOR_LBRACE\t","OPERATOR_RBRACE\t", "EOF_DOLLAR\t$$$\t$$$\t$$$"};
 
 void Lexer::PrintTokens() {
     for (int i = 0; i < tokens.size(); i++) {
@@ -281,4 +281,6 @@ void Lexer::Tokenize(const string *source) {
         }
         currentIndex++;
     }
+
+    MakeToken(source, TokenType::EOF_DOLLAR, sourceLength, 0);
 }
